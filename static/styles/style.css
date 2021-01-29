@@ -1,0 +1,266 @@
+/* ==============TOP BAR HEADER ================= */
+body {
+  align-items: center;
+  background-color: #beddeb;
+  font-family: 'Montserrat', sans-serif;
+}
+.top-bar {
+  background: #7aaec4;
+  height: 3rem;
+  padding: .5rem 0;
+}
+.top-bar a {
+  color: white;
+  text-decoration: none;
+  font-size: 0.8rem;
+}
+
+.navbar {
+  box-shadow: 0 .5rem .5rem rgba(0,0,0,.1);
+}
+#title_bar {
+  text-align: center;
+  display:table;
+  align-items: center;
+}
+#title_bar img {
+  padding-left: 2rem;
+  padding-right: .8rem;
+}
+#title_bar h1 {
+  display: table-cell;
+  vertical-align: middle;
+  text-shadow: .1rem .1rem .1rem rgba(0,0,0,.4);
+}
+
+#script-container {
+  height: 130px;
+  position: relative;
+  background-image: linear-gradient(to bottom, white, #beddeb);
+  display: flex;
+  justify-content: center;
+  white-space: nowrap;
+}
+.box {
+  position: absolute;
+  width:max-content/3;
+  margin: auto;
+  height: 48px;
+  display: inline-block;
+}
+label[for=city_autocomplete] {
+  color: white;
+  text-shadow: rgb(0, 0, 0) 0.1rem 0.1rem 0.3rem;
+}
+#script-container form {
+  display: inline-block;
+}
+
+#script-container button {
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+  padding-bottom: 10px;
+}
+
+#script-container button:hover {
+  position: relative;
+  top: +1px;
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+#carousel_background {
+  background-image: url("/static/img/cloud_background_stretched.png");
+  height: 1400px;
+}
+
+#carousel {
+  height: 600px;
+}
+
+.card {
+  padding: 1.2rem 3rem 1rem 3rem;
+  margin: auto;
+  border-radius: 1.5rem;
+  border-color: rgba(238, 237, 237, 0.438);
+  box-shadow: 5px 8px 10px #80808033;
+  width: 800px;
+}
+
+.temp {
+  font-size: 5rem;
+  color: rgb(57, 57, 58)
+}
+.carousel-indicators li {
+  width: 5px;
+  height: 6px;
+  border-radius: 100%;
+  opacity: 0.2;
+  background-color: #000000
+}
+
+.carousel-indicators {
+  margin-bottom: 0
+}
+
+.temp {
+  font-size: 5rem;
+  color: rgb(57, 57, 58);
+  text-shadow: .3rem .3rem .3rem rgba(0, 0, 0, 0.2);
+}
+
+.card-1 {
+  background: linear-gradient(to right, #ffffff 50%, rgb(136, 209, 243))!important;
+  border-right-color: rgb(136, 209, 243);
+}
+
+@media(max-width:767px) {
+  .temp {
+      font-size: 3rem
+  }
+}
+
+.location {
+  margin-bottom: 1.5rem;
+  font-size: 2.5vw;
+}
+
+@media(max-width:767px) {
+  .location {
+      font-size: 0.75rem
+  }
+}
+
+.img-fluid {
+  float: right;
+  width: 50%;
+  display: flex;
+  align-items: center
+}
+
+.row2 .img-fluid {
+  margin: 10% 0;
+  opacity: 0.5;
+  width: 40%
+}
+
+.card-2 .row {
+  justify-content: center
+}
+
+.card-3 .row {
+  justify-content: center
+}
+
+.row1 {
+  font-size: 0.7rem;
+  font-weight: bold;
+  color: black
+}
+
+.row3 {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: black
+}
+
+@media(max-width:400px) {
+  .row3 {
+      font-size: 0.7rem;
+      font-weight: bold;
+      color: black
+  }
+}
+
+@media(max-width:320px) {
+  .row3 {
+      font-size: 0.6rem;
+      font-weight: bold;
+      color: black
+  }
+}
+
+.row4 {
+  font-size: 0.9rem;
+  text-align: center;
+  color: rgba(145, 143, 143, 0.774);
+  margin: 5% 0 2.5rem;
+}
+
+.card-3 .row3 {
+  margin: 5% 0 2.5rem
+}
+
+.col {
+  overflow: visible
+}
+
+.row {
+  overflow: visible
+}
+
+#carousel_background .weather_description {
+  clear: both;
+  text-align: end;
+  font-size: 20px;
+  font-style: italic;
+  position: absolute;
+  bottom: 20%;
+  right: 5%;
+}
+.fas {
+  color: black;
+}
+#carousel_background .container {
+  position:relative;
+}
+
+.row .col .fas {
+  font-size: 50px;
+  padding-top:15px;
+  padding-bottom: 3px;
+  text-shadow: .1rem .1rem .3rem rgba(0,0,0,0.4);
+}
+#license {
+    bottom: 0;
+    right: 0;
+    font-size: 8px;
+    text-align: right;
+}
+
+/*-- Bootstrap Mobile Gutter Fix --*/
+.row, .container-fluid {
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+
+/*-- Fixed Background Image --*/
+.fixed-background {
+  position: relative;
+  width: 100%;
+  z-index: 1000!important;
+}
+.fixed-wrap {
+  clip: rect(0, auto, auto, 0);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -999 !important;
+}
+.fixed {
+  z-index: -999!important;
+  display: block;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
+}

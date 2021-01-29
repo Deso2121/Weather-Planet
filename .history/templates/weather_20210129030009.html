@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Zaimportowanie wymaganych skryptów, stylesheetów oraz ustawienie nazwy strony -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/bootstrap.min.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Weather Planet</title>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" type= "text/css" href="{{ url_for('static',filename='styles/style.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/0d483111fa.js" crossorigin="anonymous"></script>
+    <!-- Korekcje stylu pola Location: -->
+    <style>
+        .ui-autocomplete {
+            max-height: 100px;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+        html .ui-autocomplete {
+            height: 100px;
+        }
+    </style>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/highcharts-more.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
+</head>
+
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container text-right">
+            <div class="col-12">
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Pasek tytułowy -->
+    <nav class="navbar bg-light navbar-light navbar-expand-lg">
+        <div id="title_bar" class="header">
+            <img src="{{ url_for('static',filename='img/sun-icon.png') }}" alt="logo"/>
+            <h1>Weather Planet</h1>
+        </div>
+    </nav>
+
+    <!-- Pasek z polem Location zawierającym skrypt dopełniający pisownię użytkownika -->
+
+    <div id="script-container" class="box col-12">
+        <div class="box top center" id="autocomp" style="width: 500px;
+        text-align: center!important; font-size: 25px!important; padding-top: 40px;">
+        <form id=searchForm method="POST">
+            {{ form.autocomp.label }} {{ form.autocomp }}
+            <script id="autocomp_script">
+            $(function(){
+                $.ajax({
+                    url: '{{ url_for("autocomplete") }}'
+                    }).done(function (data){
+                        $('#city_autocomplete').autocomplete({
+                            source: data,
+                            minLength: 3
+                        });
+                    });
+                });
+            </script>
+                    <a href=# id="search_button"></a>
+                    <button type="submit" class="btn btn-default">
+                        <img src="/static/img/telescope.svg" alt="Search">
+                    </button>
+        </div>
+        </form>
+    </div>
+
+    <!-- Carousel placeholder/ to miała być karuzela, przewijana w lewo i w prawo, np. między różnymi lokacjami -->
+    <!-- Wartości z aplikacji Flask są podawane w formacie {{wartość}} -->
+    <div id="carousel_background" class="container">
+        <div class="container">
+            <div class="card card-1">
+                <div id="demo" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="temp">{{weather.temperature}}&deg;</div>
+                                    <div class="location">{{weather.city}}</div>
+                                </div>
+                                <div class="col-6"> 
+                                    <img class="img-fluid" src="/static/img/{{weather.icon}}.png"> 
+                                    <div class="weather_description">{{weather.description}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card card-2">
+                <div id="demo" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="row row2"><i class="fas fa-temperature-low" style="padding-left: 15px;"></i></div>
+                                    <div class="row row3">{{weather.temperature_min}}</div>
+                                    <div class="row row4">Min temperature</div>
+                                </div>
+                                <div class="col">
+                                    <div class="row row2"><i class="fas fa-temperature-high" style="padding-left: 15px;"></i></div>
+                                    <div class="row row3">{{weather.temperature_max}}</div>
+                                    <div class="row row4">Max temperature</div>
+                                </div>
+                                <div class="col">
+                                    <div class="row row2"><i class="fas fa-tachometer-alt"></i></div>
+                                    <div class="row row3">{{weather.pressure}}</div>
+                                    <div class="row row4">pressure</div>
+                                </div>
+                                <div class="col">
+                                    <div class="row row2"><i class="fas fa-tint"></i></div>
+                                    <div class="row row3">{{weather.humidity}}</div>
+                                    <div class="row row4">humidity</div>
+                                </div>
+                                <div class="col">
+                                    <div class="row row2"><i class="fas fa-wind"></i></div>
+                                    <div class="row row3">{{weather.wind_speed}}</div>
+                                    <div class="row row4">wind speed</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card card-2">
+                <div id="demo" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="row row2"><i class="fas fa-thermometer-quarter" style="padding-left: 15px;"></i></div>
+                                    <div class="row row3">{{weather.temp1}}</div>
+                                    <div class="row row4">{{weather.day1}}</div>
+                                </div>
+                                <div class="col">
+                                    <div class="row row2"><i class="fas fa-thermometer-quarter" style="padding-left: 15px;"></i></div>
+                                    <div class="row row3">{{weather.temp2}}</div>
+                                    <div class="row row4">{{weather.day2}}</div>
+                                </div>
+                                <div class="col">
+                                    <div class="row row2"><i class="fas fa-thermometer-quarter"></i></div>
+                                    <div class="row row3">{{weather.temp3}}</div>
+                                    <div class="row row4">{{weather.day3}}</div>
+                                </div>
+                                <div class="col">
+                                    <div class="row row2"><i class="fas fa-thermometer-quarter"></i></div>
+                                    <div class="row row3">{{weather.temp4}}</div>
+                                    <div class="row row4">{{weather.day4}}</div>
+                                </div>
+                                <div class="col">
+                                    <div class="row row2"><i class="fas fa-thermometer-quarter"></i></div>
+                                    <div class="row row3">{{weather.temp5}}</div>
+                                    <div class="row row4">{{weather.day5}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card card-3">
+                <div id="demo" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="row">
+                                <img id=plot src={{plot}} alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Licencja dotycząca ikon pogody -->
+    <div id=license>
+    <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/StillImage" property="dct:title" rel="dct:type">Weather Icons</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://dovora.com" property="cc:attributionName" rel="cc:attributionURL">Dovora Interactive</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.<br />Based on a work at <a xmlns:dct="http://purl.org/dc/terms/" href="https://dovora.com/resources/weather-icons/" rel="dct:source">https://dovora.com/resources/weather-icons/</a>.
+    </div>
+</body>
+
+</html>
