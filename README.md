@@ -10,7 +10,8 @@ Weather App
 * [Status](#status)
 
 ## General info
-Weather App is a simple metheorology app made in Python/Flask and HTML5/CSS/Bootstrap 
+Weather App is a simple metheorology app made in Python/Flask and HTML5/CSS/Bootstrap.  
+The data is downloaded from OpenWeatherMap API.
 
 ## Screenshots
 ![Example screenshot](./img/appShowcase1.png)
@@ -20,6 +21,7 @@ Weather App is a simple metheorology app made in Python/Flask and HTML5/CSS/Boot
 Python
 Flask
 HTML5/CSS/Bootstrap
+OpenWeatherMap API
 
 ## Setup
 App is run with app.py. Then the user should open the run address in the web browser (default 127.0.0.1:5000)
