@@ -18,10 +18,10 @@ The data is downloaded from OpenWeatherMap API.
 ![Example screenshot](./img/appShowcase2.png)
 
 ## Technologies
-Python
-Flask
-HTML5/CSS/Bootstrap
-OpenWeatherMap API
+Python  
+Flask  
+HTML5/CSS/Bootstrap  
+OpenWeatherMap API  
 
 ## Setup
 App is run with app.py. Then the user should open the run address in the web browser (default 127.0.0.1:5000)
